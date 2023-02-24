@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <script src="index.js" defer></script>
     <title>Exercicio 11</title>
 </head>
@@ -11,18 +12,39 @@
     <h1>Cadastro de Devs</h1>
     <hr>
 
-    <form action="" id="form">
+    <div>
+        <form action="" id="form">
+    
+            <label for="fullName">Digite seu nome</label>
+            <input type="text" name="fullName" id="fullName"> <br><br>
+    
+            <label>Tecnologias:</label><br>
+            <button id="adicionarTecnologia" type="button" class="button">Adicionar tecnologia</button>
+    
+            <ul id="tecnologias"></ul>
+            <br>
+    
+            <button class="button">Cadastrar</button>
+        </form>
+    </div>
 
-        <label for="fullName">Digite seu nome</label>
-        <input type="text" name="fullName" id="fullName"> <br><br>
-
-        <label>Tecnologias:</label><br>
-        <button id="adicionarTecnologia" type="button">Adicionar tecnologia</button>
-
-        <ul id="tecnologias"></ul>
-        <br>
-
-        <button>Cadastrar</button>
-    </form>
+    <section id="listaDevs">
+        <table>
+            <thead>
+                <tr>
+                    <td>Nome</td>
+                    <td>Tecnologia</td>
+                    <td>Tempo Experiência</td>
+                </tr>
+            </thead>
+            <tbody id="novosDevs">
+                <tr>
+                    <td>Patrício Samuel dos Anjos</td>
+                    <td>Javacript</td>
+                    <td>0-2 anos</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
 </body>
 </html>
