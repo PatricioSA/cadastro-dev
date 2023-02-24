@@ -1,12 +1,17 @@
 const buttonAddTechnology = document.getElementById('adicionarTecnologia')
 const form = document.getElementById('form')
+const devList = document.getElementById('listaDevs')
 let developers = []
+let tecnologias = []
 let inputRows = 0
 
 buttonAddTechnology.addEventListener('click', function () {
 
     const tecnologiasDev = document.getElementById('tecnologias')
     const newRow = document.createElement('li')
+    const inputExperiencia1 = document.createElement('div')
+    const inputExperiencia2 = document.createElement('div')
+    const inputExperiencia3 = document.createElement('div')
 
     const rowIndex = inputRows
     inputRows++
@@ -24,44 +29,51 @@ buttonAddTechnology.addEventListener('click', function () {
     const expLabel2 = createLabel('3-4 anos')
     const expLabel3 = createLabel('5+')
 
+    inputExperiencia1.append(inputRadio, expLabel1)
+    inputExperiencia2.append(inputRadio2, expLabel2)
+    inputExperiencia3.append(inputRadio3, expLabel3)
+
     const btnRemoveRow = document.createElement('button')
     btnRemoveRow.type = 'button'
     btnRemoveRow.innerText = 'Remover'
+    btnRemoveRow.id = 'btnRemove'
     btnRemoveRow.addEventListener('click', function () {
-      tecnologiasDev.removeChild(newRow)
+        tecnologiasDev.removeChild(newRow)
     })
 
     newRow.append(
-        labelTechName, inputTechName, expLabel, inputRadio, expLabel1, inputRadio2, expLabel2, inputRadio3, expLabel3, btnRemoveRow
+        labelTechName, inputTechName, expLabel, inputExperiencia1, inputExperiencia2, inputExperiencia3, btnRemoveRow
     )
 
     tecnologiasDev.appendChild(newRow)
 })
 
-form.addEventListener('submit', function(event) {
+form.addEventListener('submit', function (event) {
     event.preventDefault()
 
     const fullName = document.getElementById('fullName')
     const inputRows = document.querySelectorAll('.inputRow')
 
-    let tecnologias = []
+    let techName = ''
+    let techExpo = ''
     inputRows.forEach(function (row) {
-        const techName = document.querySelector('#' + row.id + ' input[name="techName"]').value
-        const techExpo = document.querySelector('#' + row.id + ' input[type="radio"]:checked').value
+        techName = document.querySelector('#' + row.id + ' input[name="techName"]').value
+        techExpo = document.querySelector('#' + row.id + ' input[type="radio"]:checked').value
 
-        tecnologias.push({name: techName, experiencia: techExpo})
+        tecnologias.push({ name: techName, experiencia: techExpo })
     })
 
-    const newDev = {fullname: fullName.value, tecnologias: tecnologias}
+    const newDev = { fullname: fullName.value, tecnologias: tecnologias }
     developers.push(newDev)
     alert('Novo dev casdastrado com sucesso!')
 
     fullName.value = ''
-    inputRows.forEach(function(row) {
+    inputRows.forEach(function (row) {
         row.remove()
     })
 
     console.log(developers)
+    createTableRow(newDev.fullname, techName, techExpo)
 })
 
 function createInput(type, name, value) {
@@ -77,4 +89,20 @@ function createLabel(text, htmlFor) {
     label.innerText = text
     label.htmlFor = htmlFor
     return label
+}
+
+function createTableRow(name, techName, experience) {
+    const tbody = document.getElementById('novosDevs')
+    const tr = document.createElement('tr')
+    const td = document.createElement('td')
+    const td2 = document.createElement('td')
+    const td3 = document.createElement('td')
+
+    td.innerText = name
+    td2.innerText = techName
+    td3.innerText = experience
+
+    tr.append(td, td2, td3)
+    tbody.appendChild(tr)
+    return tr
 }
