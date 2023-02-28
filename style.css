@@ -55,7 +55,6 @@ input {
 
 #listaDevs table{
     border-collapse: collapse;
-    /* padding: 0.8rem; */
     text-align: center;
     width: 100%;
 }
@@ -63,4 +62,12 @@ input {
 td, th {
     border: 1px solid black;
     padding: 0.2rem 1rem;
+}
+
+th {
+    background-color: #fff;
+}
+
+tr:nth-child(even) {
+    background-color: #fff;
 }
