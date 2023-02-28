@@ -53,15 +53,17 @@ form.addEventListener('submit', function (event) {
 
     const fullName = document.getElementById('fullName')
     const inputRows = document.querySelectorAll('.inputRow')
-
+ 
     let techName = ''
     let techExpo = ''
     inputRows.forEach(function (row) {
         techName = document.querySelector('#' + row.id + ' input[name="techName"]').value
         techExpo = document.querySelector('#' + row.id + ' input[type="radio"]:checked').value
-
+        
         tecnologias.push({ name: techName, experiencia: techExpo })
     })
+    
+    if(fullName.value === '' || techName === '') return
 
     const newDev = { fullname: fullName.value, tecnologias: tecnologias }
     developers.push(newDev)
