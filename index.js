@@ -3,7 +3,7 @@ const form = document.getElementById('form')
 const devList = document.getElementById('listaDevs')
 let developers = []
 let tecnologias = []
-let inputRows = 0
+let numberRow = 0
 
 buttonAddTechnology.addEventListener('click', function () {
 
@@ -13,8 +13,8 @@ buttonAddTechnology.addEventListener('click', function () {
     const inputExperiencia2 = document.createElement('div')
     const inputExperiencia3 = document.createElement('div')
 
-    const rowIndex = inputRows
-    inputRows++
+    const rowIndex = numberRow
+    numberRow++
     newRow.id = 'inputRow-' + rowIndex
     newRow.className = 'inputRow'
 
@@ -65,7 +65,7 @@ form.addEventListener('submit', function (event) {
     
     if(fullName.value === '' || techName === '') return
 
-    const newDev = { fullname: fullName.value, tecnologias: tecnologias }
+    const newDev = {id: numberRow, fullname: fullName.value, tecnologias: tecnologias }
     developers.push(newDev)
     alert('Novo dev casdastrado com sucesso!')
 
@@ -93,18 +93,52 @@ function createLabel(text, htmlFor) {
     return label
 }
 
+function createElement(tag, innerText = '', innerHTML = '') {
+    const element = document.createElement(tag)
+
+    if(innerText) {
+        element.innerText = innerText
+    }
+
+    if(innerHTML) {
+        element.innerHTML = innerHTML
+    }
+
+    return element
+}
+
 function createTableRow(name, techName, experience) {
     const tbody = document.getElementById('novosDevs')
-    const tr = document.createElement('tr')
-    const td = document.createElement('td')
-    const td2 = document.createElement('td')
-    const td3 = document.createElement('td')
 
-    td.innerText = name
-    td2.innerText = techName
-    td3.innerText = experience
+    const newTableRow = createElement('tr')
+    const tableRowIndex = numberRow
+    newTableRow.id = 'tableRow-' + tableRowIndex
 
-    tr.append(td, td2, td3)
-    tbody.appendChild(tr)
-    return tr
+    const nameDev = createElement('td', name)
+    const tech = createElement('td', techName)
+    const timeExperience = createElement('td', experience)
+    const action = createElement('td')
+
+    const deleteButton = createElement('button', '', '<span class="material-symbols-outlined">delete</span>')
+
+    deleteButton.classList.add('btnAction')
+
+    deleteButton.addEventListener('click', () => deleteDev(tableRowIndex))
+    console.log(newTableRow.id)
+
+    action.append(deleteButton)
+
+    newTableRow.append(nameDev, tech, timeExperience, action)
+    tbody.appendChild(newTableRow)
+    return newTableRow
+}
+
+function deleteDev(id) {
+    const tbody = document.getElementById('novosDevs')
+    const tableRow = document.querySelector(`#tableRow-${id}`)
+    console.log(tableRow)
+    tbody.removeChild(tableRow)
+
+    developers = developers.filter((dev) => dev.id !== id)
+    console.log(developers)
 }
