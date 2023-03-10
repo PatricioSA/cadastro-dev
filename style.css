@@ -14,7 +14,7 @@ h1 {
     padding: 0.5rem;
 }
 
-#containerForm {
+#containerForm, div {
     font-weight: 400;
     display: flex;
     justify-content: center;
