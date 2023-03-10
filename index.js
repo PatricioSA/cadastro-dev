@@ -25,9 +25,9 @@ buttonAddTechnology.addEventListener('click', function () {
 
     const labelTechName = createLabel('Nome:', 'techName')
     const expLabel = createLabel('Experiência:')
-    const expLabel1 = createLabel('0-2 anos')
-    const expLabel2 = createLabel('3-4 anos')
-    const expLabel3 = createLabel('5+')
+    const expLabel1 = createLabel('0-2 anos', 'techExpo-' + rowIndex)
+    const expLabel2 = createLabel('3-4 anos', 'techExpo-' + rowIndex)
+    const expLabel3 = createLabel('5+', 'techExpo-' + rowIndex)
 
     inputExperiencia1.append(inputRadio, expLabel1)
     inputExperiencia2.append(inputRadio2, expLabel2)
