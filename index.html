@@ -1,29 +1,33 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <script src="index.js" defer></script>
     <title>Exercicio 11</title>
 </head>
+
 <body>
     <h1>Cadastro de Devs</h1>
     <hr>
 
-    <div>
+    <div id="containerForm">
         <form id="form">
-    
+
             <label for="fullName">Digite seu nome</label>
             <input type="text" name="fullName" id="fullName"> <br><br>
-    
+
             <label>Tecnologias:</label><br>
             <button id="adicionarTecnologia" type="button" class="button">Adicionar tecnologia</button>
-    
+
             <ul id="tecnologias"></ul>
             <br>
-    
+
             <button class="button">Cadastrar</button>
         </form>
     </div>
@@ -35,16 +39,14 @@
                     <th>Nome</th>
                     <th>Tecnologia</th>
                     <th>Tempo Experiência</th>
+                    <th>Ações</th>
                 </tr>
             </thead>
             <tbody id="novosDevs">
-                <tr>
-                    <td>Patrício Samuel dos Anjos</td>
-                    <td>Javacript</td>
-                    <td>0-2 anos</td>
-                </tr>
+                
             </tbody>
         </table>
     </section>
 </body>
+
 </html>
