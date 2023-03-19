@@ -54,8 +54,6 @@ form.addEventListener('submit', function (event) {
     const fullName = document.getElementById('fullName')
     const inputRows = document.querySelectorAll('.inputRow')
  
-    let techName = ''
-    let techExpo = ''
     inputRows.forEach(function (row) {
         techName = document.querySelector('#' + row.id + ' input[name="techName"]').value
         techExpo = document.querySelector('#' + row.id + ' input[type="radio"]:checked').value
@@ -75,7 +73,7 @@ form.addEventListener('submit', function (event) {
     })
 
     console.log(developers)
-    createTableRow(newDev.fullname, techName, techExpo)
+    createTableRow(newDev.fullname, tecnologias[tecnologias.length - 1].name, tecnologias[tecnologias.length - 1].experiencia)
 })
 
 function createInput(type, name, value) {
@@ -124,7 +122,6 @@ function createTableRow(name, techName, experience) {
     deleteButton.classList.add('btnAction')
 
     deleteButton.addEventListener('click', () => deleteDev(tableRowIndex))
-    console.log(newTableRow.id)
 
     action.append(deleteButton)
 
@@ -136,7 +133,6 @@ function createTableRow(name, techName, experience) {
 function deleteDev(id) {
     const tbody = document.getElementById('novosDevs')
     const tableRow = document.querySelector(`#tableRow-${id}`)
-    console.log(tableRow)
     tbody.removeChild(tableRow)
 
     developers = developers.filter((dev) => dev.id !== id)
